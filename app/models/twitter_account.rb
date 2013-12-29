@@ -6,7 +6,7 @@ class TwitterAccount < ActiveRecord::Base
   def favorite_tweets!
     return if search_terms.empty?
 
-    client.search(search_terms).first.each do |tweet|
+    client.search(search_terms).each do |tweet|
       begin
         client.favorite tweet.id
         favorited_tweets.create(
