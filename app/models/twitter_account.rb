@@ -3,10 +3,10 @@ class TwitterAccount < ActiveRecord::Base
   has_many :keywords
   has_many :favorited_tweets
 
-  def favorite_tweets!(amount=5)
+  def favorite_tweets!
     return if search_terms.empty?
 
-    client.search(search_terms).first(amount).each do |tweet|
+    client.search(search_terms).first.each do |tweet|
       begin
         client.favorite tweet.id
         favorited_tweets.create(
