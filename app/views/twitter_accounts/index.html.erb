@@ -1,6 +1,6 @@
 <div class="page-header">
   <div class="pull-right">
-    <%= link_to "Add Twitter Account", user_omniauth_authorize_path(:twitter), class: "btn btn-default" %>
+    <%#= link_to "Add Twitter Account", user_omniauth_authorize_path(:twitter), class: "btn btn-default" %>
   </div>
 
   <h1>Twitter Accounts</h1>
@@ -9,25 +9,28 @@
 
 <% if current_user.twitter_accounts.empty? %>
   <div class="alert alert-success"><%= link_to "Connect a Twitter Account", user_omniauth_authorize_path(:twitter) %> to get started!</div>
-<% end %>
+<% else %>
 
-<% current_user.twitter_accounts.each do |twitter_account| %>
-  <div class="twitter-account">
-    <%= link_to image_tag(twitter_account.image_url, class: "img-rounded"), twitter_account %>
+  <% current_user.twitter_accounts.each do |twitter_account| %>
+    <div class="twitter-account">
+      <%= link_to image_tag(twitter_account.image_url, class: "img-rounded"), twitter_account %>
 
-    <div class="twitter-account-body">
-      <%= link_to twitter_account do %>
-        <strong>@<%= twitter_account.username %></strong>
+      <div class="twitter-account-body">
+        <%= link_to twitter_account do %>
+          <strong>@<%= twitter_account.username %></strong>
 
-        <span>
-          Keywords:
-          <% twitter_account.keywords.each do |keyword| %>
-            <span class="label label-primary"><%= keyword.text %></span>
-          <% end %>
+          <span>
+            Keywords:
+            <% twitter_account.keywords.each do |keyword| %>
+              <span class="label label-primary"><%= keyword.text %></span>
+            <% end %>
 
-        </span>
-      <% end %>
+          </span>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
+
+  <!--<p class="text-center">Need more accounts? <%= mail_to "excid3@gmail.com", "Contact support", subject: "I'd like to purchase additional account(s) for Fluttrly!" %> to purchase additional accounts.</p>-->
 <% end %>
 
