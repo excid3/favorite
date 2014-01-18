@@ -17,7 +17,8 @@ class TwitterAccount < ActiveRecord::Base
           text:      tweet.text,
           posted_at: tweet.created_at
         )
-      rescue
+      rescue Exception => e
+        puts e
       end
     end
   end
