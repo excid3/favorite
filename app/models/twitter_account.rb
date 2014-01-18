@@ -18,7 +18,7 @@ class TwitterAccount < ActiveRecord::Base
           posted_at: tweet.created_at
         )
       rescue Exception => e
-        puts e
+        Rails.logger.info e
       end
     end
   end
