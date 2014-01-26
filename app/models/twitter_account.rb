@@ -24,7 +24,7 @@ class TwitterAccount < ActiveRecord::Base
   end
 
   def search_terms
-    @search_terms ||= keywords.map(&:text).join(" OR ")
+    @search_terms ||= keywords.map(&:text).join(" OR ") + " -RT -from:#{username}"
   end
 
   def client
