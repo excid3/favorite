@@ -7,20 +7,18 @@ class TwitterAccount < ActiveRecord::Base
     return if search_terms.empty?
 
     client.search(search_terms).first(amount).each do |tweet|
-      begin
-        client.favorite tweet.id
-        favorited_tweets.create(
-          status_id: tweet.id,
-          name:      tweet.user.name,
-          username:  tweet.user.username,
-          image_url: tweet.user.profile_image_url_https.to_s,
-          text:      tweet.text,
-          posted_at: tweet.created_at
-        )
-      rescue Exception => e
-        Rails.logger.info e
-      end
+      client.favorite tweet.id
+      favorited_tweets.create(
+        status_id: tweet.id,
+        name:      tweet.user.name,
+        username:  tweet.user.username,
+        image_url: tweet.user.profile_image_url_https.to_s,
+        text:      tweet.text,
+        posted_at: tweet.created_at
+      )
     end
+  rescue Exception => e
+    Rails.logger.info e
   end
 
   def search_terms

@@ -15,11 +15,14 @@
     <% end %>
 
     <div class="form-group">
+      <p><small><%= link_to "Preview Search Results", "#", id: "preview", data: {username: @twitter_account.username} %></small></p>
     <% @twitter_account.keywords.each do |keyword| %>
-      <%= link_to twitter_account_keyword_path(@twitter_account, keyword), method: :delete, class: "btn btn-default" do %>
-        <%= keyword.text %>
-        <%= fa_icon("times") %>
-      <% end %>
+      <p>
+        <%= link_to twitter_account_keyword_path(@twitter_account, keyword), method: :delete, class: "btn btn-default" do %>
+          <span class="search-term"><%= keyword.text %></span>
+          <%= fa_icon("times") %>
+        <% end %>
+      </p>
     <% end %>
   </div>
 
