@@ -39,7 +39,7 @@
   <div class="col-sm-9">
     <h4>Recently Favorited Tweets</h4>
 
-    <% if @twitter_account.favorited_tweets.empty? %>
+    <% if @tweets.empty? %>
       <% if @twitter_account.keywords.empty? %>
         <div class="alert alert-success"><%= fa_icon("arrow-left") %> Add a keyword to begin favoriting tweets!</div>
       <% else %>
@@ -48,7 +48,7 @@
     <% end %>
 
 
-    <% @twitter_account.favorited_tweets.recent.sorted.each do |favorited_tweet| %>
+    <% @tweets.each do |favorited_tweet| %>
       <div class="tweet">
         <%= link_to image_tag(favorited_tweet.image_url, class: "img-rounded"), twitter_account_url(favorited_tweet.username), target: "_blank" %>
 
@@ -62,5 +62,7 @@
         </p>
       </div>
     <% end %>
+
+    <%= will_paginate @tweets, renderer: BootstrapPagination::Rails %>
   </div>
 </div>

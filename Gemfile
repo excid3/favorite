@@ -20,6 +20,8 @@ gem "omniauth-twitter", "~> 1.0.1"
 gem "twitter", "~> 5.4.1"
 gem "whenever", "~> 0.9.0"
 gem "rinku", "~> 1.7.3"
+gem "will_paginate", "~> 3.0.5"
+gem "will_paginate-bootstrap", "~> 1.0.0"
 
 group :development do
   gem 'capistrano', github: "capistrano/capistrano", require: false

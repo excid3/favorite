@@ -7,6 +7,7 @@ class TwitterAccountsController < ApplicationController
   end
 
   def show
+    @tweets = @twitter_account.favorited_tweets.recent.sorted.paginate(page: params[:page])
   end
 
   def destroy
